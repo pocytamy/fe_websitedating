@@ -1,0 +1,267 @@
+<div id="wrapper">
+
+    <!-- header -->
+    <div id="main_header" class="header-transparent" uk-sticky="top:10; cls-inactive :header-transparent">
+        <header>
+
+            <!-- Logo-->
+<!--            <i class="header-traiger uil-bars" uk-toggle="target: #wrapper ; cls: mobile-active" (click)="goToTheHome()"></i>-->
+            <i class="header-traiger uil-bars icon-feather-home" uk-toggle="target: #wrapper ; cls: mobile-active" (click)="goToTheHome()">
+                <img src="assets/bg-removebg-preview.png" style="width: 110px;height: 70px"></i>
+
+
+            <div class="h5 uk-hidden@m mr-3 mb-0"> Bootstro</div>
+            <!-- user icons -->
+            <div class="head_user">
+
+
+                <!-- browse apps  -->
+
+                <a href="#" class="opts_icon uk-visible@s"> <i class="icon-feather-heart"></i></a>
+                <!-- cart apps dropdown -->
+                <div uk-dropdown="pos: top-right;mode:click ; animation: uk-animation-slide-bottom-small"
+                     class="dropdown-notifications large">
+
+                    <!-- notification contents -->
+                    <div class="dropdown-notifications-content" data-simplebar>
+
+                        <!-- notiviation list -->
+                        <ul>
+                            <li class="notifications-not-read" >
+                                <table class="table">
+
+                                    <tr *ngFor="let o of orderLovers" style="width: 100%">
+                                        <td style="text-align: left"><span class="notification-avatar" >
+                                            <img src="{{o?.provider?.account?.avatar}}" alt="">
+                                        </span></td>
+                                        <td style="vertical-align: bottom; text-align: left">{{o?.provider?.account?.fullName}}</td>
+                                        <!--                                        <td><button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="createOrderLover()">Order</button></td>-->
+                                    </tr>
+
+                                </table>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="dropdown-notifications-footer">
+                        <a href="#"> sell all <i class="icon-line-awesome-long-arrow-right"></i> </a>
+                    </div>
+                </div>
+
+                <!-- Message  notificiation dropdown -->
+                <a class="opts_icon"> <i class="uil-envelope-alt"></i></a>
+
+                <!-- notificiation icon  -->
+                <a class="opts_icon"> <i class="uil-bell"></i></a>
+
+                <!-- profile -image -->
+                <a class="opts_account"> <img src="{{account?.avatar}}" alt=""></a>
+
+                <!-- profile dropdown-->
+                <div uk-dropdown="pos: top-right;mode:click ; animation: uk-animation-slide-bottom-small"
+                     class="dropdown-notifications small">
+
+                    <!-- User Name / Avatar -->
+                    <a href="#">
+
+                        <div class="dropdown-user-details">
+                            <div class="dropdown-user-avatar">
+                                <a class="opts_account">
+                                    <img src="{{account?.avatar}}" alt=""></a>
+                            </div>
+                            <div class="dropdown-user-name">
+                                {{account?.username}} <span> {{account?.wallet}} <i class="icon-feather-dollar-sign"></i> </span>
+                            </div>
+                        </div>
+
+                    </a>
+
+                    <!-- User menu -->
+
+                    <ul class="dropdown-user-menu">
+                        <li><a class="btn-warning"  *ngIf="statusProvider==3"> <i class="uil-user"></i> Wait admin accept!</a></li>
+                        <li><a class="btn-success"  *ngIf="statusProvider==1"> <i class="uil-user" ></i> Ready</a></li>
+                        <li><a class="btn-danger"  *ngIf="statusProvider==2"> <i class="uil-user" ></i> Busy</a></li>
+                        <li><a class="btn-success" (click)="createProvider()" *ngIf="statusProvider!=1&&statusProvider!=2&&statusProvider!=3"> <i class="uil-bolt" ></i> Become Provider</a></li>
+                        <li><a (click)="goToProfile()"> <i class="uil-user"></i> My Profile </a></li>
+                        <li><a (click)="goToMyOrder()" > <i class="uil-invoice"></i> My Order </a></li>
+                        <li><a (click)="goToMyBill()" > <i class="uil-invoice"></i> My Bill </a></li>
+                        <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
+                        <li><a (click)="goToProviderSetting()"> <i class="uil-cog"></i> Provider Settings</a></li>
+                        <li class="menu-divider"></li>
+                        <li><a (click)="logout()"> <i class="icon-feather-log-out"></i> Sing Out</a>
+                        </li>
+                    </ul>
+
+
+                </div>
+
+            </div>
+
+        </header>
+
+    </div>
+
+
+    <div class="box-gradient-home"></div>
+
+    <!-- content -->
+    <div class="page-content">
+        <div class="page-content-inner">
+            <br>
+            <br>
+
+            <h2 style="color: #f2999f"> All Orders</h2>
+            <nav id="breadcrumbs" class="text-white">
+            </nav>
+
+
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header actions-toolbar border-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="d-inline-block mb-0">List</h4>
+                        <div class="d-flex">
+
+                            <a href="#" class="btn btn-icon btn-hover  btn-circle" uk-tooltip="Search product">
+                                <i class="uil-search"></i>
+                            </a>
+                            <div class="uk-drop" uk-drop="mode: click; pos: left-center; offset: 0">
+
+                            </div>
+
+                            <a href="#" class="btn btn-icon btn-hover  btn-circle" uk-tooltip="filter">
+                                <i class="uil-filter"></i>
+                            </a>
+                            <div uk-dropdown="pos: bottom-right ; mode: click ;animation: uk-animation-scale-up">
+                                <ul class="uk-nav uk-dropdown-nav">
+                                    <li class="uk-active"><a (click)="getAllBillOfAccountByIdAndStartOrder(idAccount, 5)"> Completed </a></li>
+                                    <li class="uk-active"><a (click)="getAllBillOfAccountByIdAndStartOrder(idAccount,4)"> Rejected </a></li>
+                                    <li class="uk-active"><a (click)="getAllBillOfAccountByIdAndStartOrder(idAccount,3)"> Confirmed </a></li>
+                                    <li class="uk-active"><a (click)="getAllBillOfAccountByIdAndStartOrder(idAccount,2)"> Pending </a></li>
+                                </ul>
+                            </div>
+
+
+                            <a href="#" class="btn btn-icon btn-hover  btn-circle" uk-tooltip="More">
+                                <i class="uil-ellipsis-h"></i>
+                            </a>
+                            <div uk-dropdown="pos: bottom-right ; mode: click ;animation: uk-animation-scale-up">
+                                <ul class="uk-nav uk-dropdown-nav">
+                                    <li><a (click)="getAllBillOfAccountById()"> Refresh </a></li>
+                                    <li><a href="#">Manage</a></li>
+                                    <li><a href="#">Setting</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center">
+                        <thead>
+                        <tr>
+                            <th scope="col">Provider</th>
+                            <th scope="col">Start At</th>
+                            <th scope="col">End At</th>
+                            <th scope="col">Total Time</th>
+                            <th scope="col">Total sales</th>
+                            <th scope="col">Status</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody class="list" *ngFor="let ba of listBillOfAccount">
+                        <tr>
+                            <th scope="row">
+                                <div class="media align-items-center">
+                                    <div>
+                                        <div class="avatar-parent-child" style="width: max-content">
+                                            <img alt="Image placeholder" src="{{ba.provider.account.avatar}}"
+                                                 class="avatar  rounded-circle">
+                                            <span class="avatar-child avatar-badge bg-success"></span>
+                                        </div>
+                                    </div>
+                                    <div class="media-body ml-4">
+                                        <a href="#" class="name h6 mb-0 text-sm">{{ba.provider.account.fullName}}</a>
+                                    </div>
+                                </div>
+                            </th>
+                            <td> {{ba.startOrder}} </td>
+                            <td> {{ba.endOrder}} </td>
+                            <td> {{ba.orderTime}} </td>
+                            <td> ${{ba.total}} </td>
+                            <td *ngIf="ba.statusOrder == 5"><span
+                                    class="badge badge-success rounded-pill">Completed</span></td>
+                            <td *ngIf="ba.statusOrder == 4"><span class="badge badge-dark rounded-pill">Rejected</span>
+                            </td>
+                            <td *ngIf="ba.statusOrder == 3"><span
+                                    class="badge badge-success rounded-pill">Confirmed</span></td>
+                            <td *ngIf="ba.statusOrder == 2"><span class="badge badge-danger rounded-pill">Pending</span>
+                            </td>
+                            <td class="text-right">
+                                <!-- Actions -->
+                                <div class="actions ml-3">
+<!--                                    <a *ngIf="ba.statusOrder == 3" class="btn btn-icon btn-hover btn-sm btn-circle"-->
+<!--                                       uk-tooltip="Completed" (click)="changeToCompleted(ba.id)"-->
+<!--                                       uk-toggle="target: #modal-example">-->
+<!--                                        <i class="icon-feather-check-square"></i> </a>-->
+
+                                    <a *ngIf="ba.statusOrder == 3" class="btn btn-icon btn-hover btn-sm btn-circle"
+                                       uk-tooltip="Completed" (click)="changeToCompleted(ba.id) " uk-toggle="target: #modal-example">
+                                        <i class="icon-feather-check-square"></i> </a>
+                                    <!--                                    <a *ngIf="ba.statusOrder == 3" class="btn btn-icon btn-hover btn-sm btn-circle"-->
+                                    <!--                                       uk-tooltip="Rejected" (click)="changeToRejected(ba.id)">-->
+                                    <!--                                        <i class="icon-feather-x-square"></i> </a>-->
+<!--                                    <a class="btn btn-icon btn-hover btn-sm btn-circle"-->
+<!--                                       uk-tooltip="Delete">-->
+<!--                                        <i class="uil-trash-alt text-danger"></i> </a>-->
+                                </div>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+</div>
+<div id="modal-example" uk-modal style="text-align: center">
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Rate And Comment</h2>
+
+        <form [formGroup]="rateForm" (submit)="sendComment()">
+            <div class="stars">
+                <input class="star star-5" id="star-5" type="radio" name="star" (click)="rate5()"/>
+                <label class="star star-5" for="star-5"></label>
+                <input class="star star-4" id="star-4" type="radio" name="star" (click)="rate4()"/>
+                <label class="star star-4" for="star-4"></label>
+                <input class="star star-3" id="star-3" type="radio" name="star" (click)="rate3()"/>
+                <label class="star star-3" for="star-3"></label>
+                <input class="star star-2" id="star-2" type="radio" name="star" (click)="rate2()"/>
+                <label class="star star-2" for="star-2"></label>
+                <input class="star star-1" id="star-1" type="radio" name="star" (click)="rate1()"/>
+                <label class="star star-1" for="star-1"></label>
+            </div>
+            <textarea formControlName="comment">
+            </textarea>
+            <br>
+            <br>
+            <p class="uk-text-right">
+                <button class="btn btn-outline-light text-dark uk-modal-close" type="button">Do it later</button>
+                <button class="btn " type="submit" style="background-color: #f2999f; color: white" data-bs-dismiss="uk-modal-dialog">Send</button>
+            </p>
+
+        </form>
+
+
+    </div>
+</div>
+
+

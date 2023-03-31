@@ -1,0 +1,259 @@
+<div id="wrapper" xmlns:text-align="http://www.w3.org/1999/xhtml">
+
+
+    <!-- header -->
+    <div id="main_header" class="header-transparent" uk-sticky="top:10; cls-inactive :header-transparent">
+        <header>
+
+            <!-- Logo-->
+            <i class="header-traiger uil-bars icon-feather-home" uk-toggle="target: #wrapper ; cls: mobile-active" (click)="goToTheHome()">
+                <img src="assets/bg-removebg-preview.png" style="width: 110px;height: 70px"></i>
+
+            <div class="h5 uk-hidden@m mr-3 mb-0"> Date Web</div>
+
+
+            <!-- user icons -->
+            <div class="head_user">
+
+
+                <!-- browse apps  -->
+
+                <a href="#" class="opts_icon uk-visible@s"> <i class="icon-feather-heart"></i></a>
+                <!-- cart apps dropdown -->
+                <div uk-dropdown="pos: top-right;mode:click ; animation: uk-animation-slide-bottom-small"
+                     class="dropdown-notifications large">
+
+                    <!-- notification contents -->
+                    <div class="dropdown-notifications-content" data-simplebar>
+
+                        <!-- notiviation list -->
+                        <ul>
+                            <li class="notifications-not-read" >
+                                <table class="table">
+
+                                    <tr *ngFor="let o of orderLovers" style="width: 100%">
+                                        <td style="text-align: left"><span class="notification-avatar" >
+                                            <img src="{{o?.provider?.account?.avatar}}" alt="">
+                                        </span></td>
+                                        <td style="vertical-align: bottom; text-align: left">{{o?.provider?.account?.fullName}}</td>
+                                        <!--                                        <td><button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="createOrderLover()">Order</button></td>-->
+                                    </tr>
+
+                                </table>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="dropdown-notifications-footer">
+                        <a href="#"> sell all <i class="icon-line-awesome-long-arrow-right"></i> </a>
+                    </div>
+                </div>
+
+                <!-- Message  notificiation dropdown -->
+                <a class="opts_icon"> <i class="uil-envelope-alt"></i></a>
+
+                <!-- notificiation icon  -->
+                <a class="opts_icon"> <i class="uil-bell"></i></a>
+
+                <!-- profile -image -->
+                <a class="opts_account"> <img src="{{account?.avatar}}" alt=""></a>
+
+                <!-- profile dropdown-->
+                <div uk-dropdown="pos: top-right;mode:click ; animation: uk-animation-slide-bottom-small"
+                     class="dropdown-notifications small">
+
+                    <!-- User Name / Avatar -->
+                    <a href="#">
+
+                        <div class="dropdown-user-details">
+                            <div class="dropdown-user-avatar">
+                                <a class="opts_account">
+                                    <img src="{{account?.avatar}}" alt=""></a>
+                            </div>
+                            <div class="dropdown-user-name">
+                                {{account?.username}} <span> {{account?.wallet}} <i class="icon-feather-dollar-sign"></i> </span>
+                            </div>
+                        </div>
+
+                    </a>
+
+                    <!-- User menu -->
+
+                    <ul class="dropdown-user-menu">
+                        <li><a class="btn-warning"  *ngIf="statusProvider==3"> <i class="uil-user"></i> Wait admin accept!</a></li>
+                        <li><a class="btn-success"  *ngIf="statusProvider==1"> <i class="uil-user" ></i> Ready</a></li>
+                        <li><a class="btn-danger"  *ngIf="statusProvider==2"> <i class="uil-user" ></i> Busy</a></li>
+                        <li><a class="btn-success" (click)="createProvider()" *ngIf="statusProvider!=1&&statusProvider!=2&&statusProvider!=3"> <i class="uil-bolt" ></i> Become Provider</a></li>
+                        <li><a (click)="goToProfile()"> <i class="uil-user"></i> My Profile </a></li>
+                        <li><a (click)="goToMyOrder()" > <i class="uil-invoice"></i> My Order </a></li>
+                        <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
+                        <li><a (click)="goToProviderSetting()"> <i class="uil-cog"></i> Provider Settings</a></li>
+                        <li class="menu-divider"></li>
+                        <li><a (click)="logout()"> <i class="icon-feather-log-out"></i> Sing Out</a>
+                        </li>
+                    </ul>
+
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+    </div>
+
+
+    <div class="box-gradient-home"></div>
+
+    <!-- content -->
+    <div class="page-content">
+
+        <div class="profile">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <div class="page-content-inner">
+                <div class="profile-details">
+                    <div class="left-side">
+                        <div class="profile-image">
+                            <a class="opts_account">
+                                <img src="{{account?.avatar}}" alt="">
+                            </a>
+                        </div>
+                        <div class="profile-details-info">
+                            <h3 style="color: #f2999f"> {{account?.fullName}} </h3>
+                        </div>
+                    </div>
+                    <div class="right-side uk-visible@m">
+                        <div class="btn-subscribe">
+                            <button *ngIf="account?.statusVip==1" (click)="requestVip()" class="btn btn-warning btn-sm">
+                                <i class="icon-feather-user"></i> Up Account VIP </button>
+                            <button *ngIf="account?.statusVip==2" class="btn btn-danger btn-sm">
+                                <i class="icon-feather-user"></i> Account VIP </button>
+                            <button  *ngIf="account?.statusVip==3" class="btn btn-success btn-sm">
+                                <i class="icon-feather-user"></i> Request Sended </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-profile" k-sticky="offset:61;media : @s">
+                    <nav class="responsive-tab">
+                        <ul>
+                            <li class="uk-active"><a class="active" href="#0">Your Profile</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="page-content-inner">
+
+            <div class="row">
+
+                <div class="col-lg-9 col-12">
+                    <div class="card">
+                        <div class="card-header bg-light">
+                            <h4> Appearence </h4>
+                        </div>
+                        <form [formGroup]="formChangeAppearance"  (ngSubmit)="changeAppearance()" class="uk-child-width-1-2@s uk-grid-small p-4 uk-grid" uk-grid="">
+                            <input hidden="hidden" formControlName="id">
+                            <div class="uk-first-column">
+                                <h5 class="uk-text-bold mb-2"> Height (cm) </h5>
+                                <input type="text" class="uk-input" placeholder="Your height" formControlName="height">
+                                <div class="uk-position-relative w-100" *ngFor="let validation of validation_messages.height">
+                                    <div class="error-message"
+                                         *ngIf="formChangeAppearance?.get('height')?.hasError(validation.type) && (formChangeAppearance?.get('height')?.dirty || formChangeAppearance?.get('height')?.touched)">
+                                        {{validation.message}}</div>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="uk-text-bold mb-2"> Weight (kg) </h5>
+                                <input type="text" class="uk-input" placeholder="Your weight" formControlName="weight">
+                                <div class="uk-position-relative w-100" *ngFor="let validation of validation_messages.weight">
+                                    <div class="error-message"
+                                         *ngIf="formChangeAppearance?.get('weight')?.hasError(validation.type) && (formChangeAppearance?.get('weight')?.dirty || formChangeAppearance?.get('weight')?.touched)">
+                                        {{validation.message}}</div>
+                                </div>
+                            </div>
+                            <div class="uk-grid-margin uk-first-column">
+                                <h5 class="uk-text-bold mb-2"> Hobby </h5>
+                                <input type="text" class="uk-input" placeholder=" Your hobby" formControlName="hobby">
+                                <div class="uk-position-relative w-100" *ngFor="let validation of validation_messages.hobby">
+                                    <div class="error-message"
+                                         *ngIf="formChangeAppearance?.get('hobby')?.hasError(validation.type) && (formChangeAppearance?.get('hobby')?.dirty || formChangeAppearance?.get('hobby')?.touched)">
+                                        {{validation.message}}</div>
+                                </div>
+                            </div>
+                            <div class="uk-grid-margin">
+                                <h5 class="uk-text-bold mb-2"> Description </h5>
+                                <input type="text" class="uk-input" placeholder=" Anything else " formControlName="description">
+                                <div class="uk-position-relative w-100" *ngFor="let validation of validation_messages.description">
+                                    <div class="error-message"
+                                         *ngIf="formChangeAppearance?.get('description')?.hasError(validation.type) && (formChangeAppearance?.get('description')?.dirty || formChangeAppearance?.get('description')?.touched)">
+                                        {{validation.message}}</div>
+                                </div>
+                            </div>
+
+
+                        <div class="mb-0"></div>
+                        <div class="uk-flex uk-flex-right p-3">
+                            <a (click)="goToProfile()" class="btn btn-soft-dark btn-sm mr-2">Cancle</a>
+                            <button [disabled]="!formChangeAppearance.valid" type="submit"  class="btn" style="background-color: #f2999f; color: white;">Save Changes</button>
+                        </div>
+                        </form>
+                    </div>
+
+
+
+                </div>
+
+                <div class="col-lg-3 col-12">
+
+                    <nav class="card responsive-tab style-3 setting-menu"
+                         uk-sticky="top:30 ; offset:100; media:@m ;bottom:true">
+                        <ul>
+                            <li ><a (click)="goToProfile()"> <i class="uil-user"></i> Profile </a></li>
+                            <li><a routerLink="/changeInfo"> <i class="uil-info-circle"></i> Info </a></li>
+                            <li><a routerLink="/changeAvatar"> <i class="uil-scenery"></i> Avatar </a></li>
+                            <li><a routerLink="/changeAppearance"> <i class="uil-hunting"></i> Appearance </a></li>
+                            <li><a routerLink="/changePassword"> <i class="uil-unlock-alt"></i> Password </a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- footer
+        ================================================== -->
+        <div class="footer">
+            <div class="uk-grid-collapse" uk-grid>
+                <div class="uk-width-expand@s uk-first-column">
+                    <p>© 2020 <strong>Bootstro</strong>. All Rights Reserved. </p>
+                </div>
+                <div class="uk-width-auto@s">
+                    <nav class="footer-nav-icon">
+                        <ul>
+                            <li><a href="#"><i class="icon-brand-facebook"></i></a></li>
+                            <li><a href="#"><i class="icon-brand-dribbble"></i></a></li>
+                            <li><a href="#"><i class="icon-brand-youtube"></i></a></li>
+                            <li><a href="#"><i class="icon-brand-twitter"></i></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

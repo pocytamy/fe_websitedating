@@ -1,0 +1,55 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="CssUnknownProperty" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myCustomPropertiesEnabled" value="true" />
+      <option name="myIgnoreVendorSpecificProperties" value="false" />
+      <option name="myCustomPropertiesList">
+        <value>
+          <list size="1">
+            <item index="0" class="java.lang.String" itemvalue="flex-flow" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="13">
+            <item index="0" class="java.lang.String" itemvalue="uk-toggle" />
+            <item index="1" class="java.lang.String" itemvalue="uk-sticky" />
+            <item index="2" class="java.lang.String" itemvalue="uk-dropdown" />
+            <item index="3" class="java.lang.String" itemvalue="uk-tooltip" />
+            <item index="4" class="java.lang.String" itemvalue="uk-height-viewport" />
+            <item index="5" class="java.lang.String" itemvalue="uk-grid" />
+            <item index="6" class="java.lang.String" itemvalue="k-sticky" />
+            <item index="7" class="java.lang.String" itemvalue="routerlink" />
+            <item index="8" class="java.lang.String" itemvalue="formcontrolname" />
+            <item index="9" class="java.lang.String" itemvalue="formgroupname" />
+            <item index="10" class="java.lang.String" itemvalue="uk-slidenav-previous" />
+            <item index="11" class="java.lang.String" itemvalue="uk-drop" />
+            <item index="12" class="java.lang.String" itemvalue="uk-modal" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="8">
+            <item index="0" class="java.lang.String" itemvalue="nobr" />
+            <item index="1" class="java.lang.String" itemvalue="noembed" />
+            <item index="2" class="java.lang.String" itemvalue="comment" />
+            <item index="3" class="java.lang.String" itemvalue="noscript" />
+            <item index="4" class="java.lang.String" itemvalue="embed" />
+            <item index="5" class="java.lang.String" itemvalue="script" />
+            <item index="6" class="java.lang.String" itemvalue="pagination-controls" />
+            <item index="7" class="java.lang.String" itemvalue="gender" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+  </profile>
+</component>
