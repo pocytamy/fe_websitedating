@@ -1,4 +1,4 @@
-<div id="wrapper" >
+<div id="wrapper" *ngIf="!check">
 
     <!-- Content
     ================================================== -->
@@ -38,7 +38,7 @@
     <!-- / .Content end -->
 
 </div>
-<div id="wrapper2">
+<div id="wrapper2" *ngIf="check">
 
     <!-- Content
     ================================================== -->
