@@ -7,28 +7,29 @@ import {ProvisionProvider} from "../../model/ProvisionProvider";
     providedIn: 'root'
 })
 export class ProvisionProviderService {
-    provisionproviders: ProvisionProvider[] = []
+    provisionproviders: ProvisionProvider[] = [];
+    private url = 'http://103.57.220.123:8080/';
 
     constructor(private http: HttpClient) {
     }
 
     getAllProvisionProvider(): Observable<ProvisionProvider[]> {
-        return this.http.get<ProvisionProvider[]>("http://103.57.220.123:8080/provisionproviders");
+        return this.http.get<ProvisionProvider[]>(this.url+"provisionproviders");
     }
 
     findProvisionProviderByProviderId(providerId: number): Observable<ProvisionProvider[]> {
-        return this.http.get<ProvisionProvider[]>(`http://103.57.220.123:8080/provisionproviders/a/getStatus/${providerId}`)
+        return this.http.get<ProvisionProvider[]>(this.url+`provisionproviders/a/getStatus/${providerId}`)
     }
 
     findById(id: number): Observable<ProvisionProvider> {
-        return this.http.get<ProvisionProvider>(`http://103.57.220.123:8080/provisionproviders/a/${id}`)
+        return this.http.get<ProvisionProvider>(this.url+`provisionproviders/a/${id}`)
     }
 
     saveProvisionProvider(provisionProvider: ProvisionProvider): Observable<ProvisionProvider> {
-        return this.http.post<ProvisionProvider>('http://103.57.220.123:8080/provisionproviders', provisionProvider)
+        return this.http.post<ProvisionProvider>(this.url+'provisionproviders', provisionProvider)
     }
 
     findProvisionProviderByProviderIdStatus1(providerId: number): Observable<ProvisionProvider[]> {
-        return this.http.get<ProvisionProvider[]>(`http://103.57.220.123:8080/provisionproviders/a/getStatus1/${providerId}`)
+        return this.http.get<ProvisionProvider[]>(this.url+`provisionproviders/a/getStatus1/${providerId}`)
     }
 }
